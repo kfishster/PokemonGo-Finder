@@ -1,6 +1,11 @@
 import json
 from pushbullet import Pushbullet
 from datetime import datetime
+import sys
+
+# Fixes the encoding of the male/female symbol
+reload(sys)  
+sys.setdefaultencoding('utf8')
 
 pushbullet_client = None
 wanted_pokemon = None
@@ -23,7 +28,7 @@ def init():
 
 # Safely parse incoming strings to unicode
 def _str(s):
-  return s.decode('utf-8').strip()
+  return s.encode('utf-8').strip()
 
 # Notify user for discovered Pokemon
 def pokemon_found(pokemon):
